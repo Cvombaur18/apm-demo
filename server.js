@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json())
 
-app.use('/style'), express.static('./public/style.css')
+app.use('/style'), express.static(path.join(__dirname,'./public/style.css'))
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))

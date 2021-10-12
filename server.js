@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json())
 
-app.use('/styles'), express.static('./public/styles.css')
+app.use('/styles'), express.static((path.join(__dirname, '/public/styles.css')))
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -39,11 +39,14 @@ app.post('/api/student', (req, res) => {
         res.status(400).send('that student already exists')
     }
 })
-
+try {
+    nonExistentFunction();
+  } catch (error) {
+    console.error(error);
+}
 app.use(rollbar.errorHandler())
 
 const port = process.env.PORT || 4400
 
 app.listen(port, () => 
 console.log(`server is up and runnning on ${port}!`));
-
